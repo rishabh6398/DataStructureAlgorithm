@@ -23,10 +23,11 @@ class LinkedList:
             current.next = newNode
             return
     def detectLoop(self):
+        s=set()
         current = self.head
         while current.next != None:
-            if current.next == self.head:
-                return current.data
+            if current.next in s:
+                return 1
             current = current.next
         return 0
 llist = LinkedList()
@@ -34,10 +35,11 @@ llist.append(20)
 llist.append(4)
 llist.append(15)
 llist.append(10)
-print(llist.detectLoop() ,'--> No Loop')
-# Create a loop for testing
-llist.head.next.next.next.next = llist.head
-print(llist.detectLoop(),'--> Loop detected')
+if(llist.detectLoop()):
+    print("Loop detected")
+else:
+    print("Loop not detected")
+
 
 
 # In[ ]:
